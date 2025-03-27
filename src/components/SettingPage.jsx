@@ -1,18 +1,15 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { FiHome } from 'react-icons/fi'; // Import home icon
 import profile from '../assets/profile.jpg'
 
 const SettingsPage = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="relative w-80 h-[612px] p-6 bg-white shadow-lg rounded-lg">
       {/* Home Icon (Top Right) */}
-      <FiHome
-        className="absolute top-4 right-4 text-gray-700 text-xl cursor-pointer"
-        onClick={() => navigate('/')}
-      />
+      <Link to='/' className='cursor-pointer'><FiHome
+        className="absolute top-4 right-4 text-gray-700 text-xl cursor-pointer"/></Link>
 
       <h2 className="text-lg font-semibold text-gray-900">Account Settings</h2>
       <div className="mt-4 flex items-center space-x-3">

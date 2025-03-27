@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SignupPage = () => {
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -70,7 +69,7 @@ const SignupPage = () => {
 
         <button className="w-full bg-purple-600 text-white py-2 rounded mt-3">Create Account</button>
       </form>
-      <button className="text-sm text-blue-500 mt-2" onClick={() => navigate('/')}>Back</button>
+      <Link className="text-sm text-blue-500 mt-2" to='/'>Back</Link>
     </div>
   );
 };

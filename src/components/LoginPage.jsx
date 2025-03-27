@@ -1,8 +1,7 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
 
   return (
     <div className="w-80 p-6 bg-white shadow-lg rounded-lg">
@@ -16,7 +15,7 @@ const LoginPage = () => {
         
         <button className="w-full bg-gray-400 text-white py-2 rounded">Login</button>
       </form>
-      <button className="text-sm text-blue-500 mt-2" onClick={() => navigate('/')}>Back</button>
+      <Link className="text-sm text-blue-500 mt-2" to='/'>Back</Link>
     </div>
   );
 };
