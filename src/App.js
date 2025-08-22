@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import WelcomePage from './components/WelcomePage';
-import LoginPage from './components/Loginpage';
-import SignupPage from './components/Signuppage';
+import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage'
 import SettingPage from './components/SettingPage';
 import './App.css'
 const App = () => {
