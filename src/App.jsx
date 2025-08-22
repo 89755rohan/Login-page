@@ -1,9 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WelcomePage from './components/Welcomepage';
+import WelcomePage from './components/WelcomePage';
 import LoginPage from './components/Loginpage';
 import SignupPage from './components/Signuppage';
 import SettingPage from './components/SettingPage';
+import './App.css'
 const App = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">

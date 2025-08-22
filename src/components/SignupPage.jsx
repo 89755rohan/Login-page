@@ -1,77 +1,117 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-const SignupPage = () => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    phone: '',
-    email: '',
-    password: '',
-    company: '',
-    isAgency: '',
-  });
+import React, { useState } from "react";
 
-  const [errors, setErrors] = useState({});
-
-  const validateForm = () => {
-    const newErrors = {};
-    if (/\d/.test(formData.fullName)) newErrors.fullName = "Name can't contain numbers";
-    if (/[a-zA-Z]/.test(formData.phone)) newErrors.phone = "Phone number must be digits only";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Invalid email format";
-    if (!/(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(formData.password))
-      newErrors.password = "Password must have 1 uppercase, 1 lowercase, 1 number & 1 special character";
-    if (/[^a-zA-Z0-9 ]/.test(formData.company)) newErrors.company = "Company name can't have special characters";
-    if (!formData.isAgency) newErrors.isAgency = "Please select an option";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) alert("Account Created Successfully!");
-  };
+export default function SignupForm() {
+  const [isAgency, setIsAgency] = useState("yes");
 
   return (
-    <div className="w-80 p-6 bg-white shadow-lg rounded-lg">
-      <h2 className="text-xl font-semibold text-gray-900">Create your PopX account</h2>
-      <form onSubmit={handleSubmit} className="mt-4">
-        {["fullName", "phone", "email", "password", "company"].map((field, idx) => (
-          <div key={idx} className="mb-3">
-            <label className="block text-sm font-semibold">{field.replace(/([A-Z])/g, " $1")}</label>
-            <input
-              type={field === "password" ? "password" : "text"}
-              className="w-full border px-3 py-2 rounded mt-1"
-              value={formData[field]}
-              onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
-            />
-            {errors[field] && <p className="text-red-500 text-xs">{errors[field]}</p>}
-          </div>
-        ))}
+    <div className="flex justify-center items-center w-[375px] h-[812px] bg-gray-50">
+      <div className="bg-gray-50 p-6 w-96 flex flex-col relative top-[-90px]">
+        <h2 className="text-2xl font-bold text-gray-800">
+          Create your <br /> PopX account
+        </h2>
 
-        <div className="mb-3">
-          <label className="block text-sm font-semibold">Are you an Agency?*</label>
-          <div className="flex space-x-4">
-            {["Yes", "No"].map((option) => (
-              <label key={option} className="flex items-center space-x-1">
+        <form className="mt-6 flex flex-col space-y-4">
+          {/* Full Name */}
+          <div className="flex flex-col">
+            <label className="h-[15px] w-[75px] relative top-[8px] left-[12px] text-sm bg-gray-50 font-medium text-purple-600 mb-1">
+              Full Name<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Marry Doe"
+              className="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          {/* Phone Number */}
+          <div className="flex flex-col">
+            <label className="h-[15px] w-[105px] relative top-[8px] left-[12px] text-sm bg-gray-50 font-medium text-purple-600 mb-1">
+              Phone number<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="tel"
+              placeholder="Marry Doe"
+              className="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          {/* Email Address */}
+          <div className="flex flex-col">
+            <label className="h-[15px] w-[95px] relative top-[8px] left-[12px] text-sm bg-gray-50 font-medium text-purple-600 mb-1">
+              Email address<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              placeholder="Marry Doe"
+              className="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          {/* Password */}
+          <div className="flex flex-col">
+            <label className="h-[15px] w-[65px] relative top-[8px] left-[12px] text-sm bg-gray-50 font-medium text-purple-600 mb-1">
+              Password<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="password"
+              placeholder="Marry Doe"
+              className="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          {/* Company Name */}
+          <div className="flex flex-col">
+            <label className="h-[15px] w-[110px] relative top-[8px] left-[14px] text-sm bg-gray-50 font-medium text-purple-600 mb-1">
+              Company name<span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              placeholder="Marry Doe"
+              className="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+            />
+          </div>
+
+          {/* Agency Radio */}
+          <div>
+            <label className="h-[15px] relative top-[]left-[12px] text-sm bg-gray-50 font-medium text-purple-600">
+              Are you an Agency?<span className="text-red-500">*</span>
+            </label>
+            <div className="flex items-center space-x-6 mt-2">
+              <label className="flex items-center space-x-2">
                 <input
                   type="radio"
-                  name="isAgency"
-                  value={option}
-                  onChange={(e) => setFormData({ ...formData, isAgency: e.target.value })}
+                  name="agency"
+                  value="yes"
+                  checked={isAgency === "yes"}
+                  onChange={() => setIsAgency("yes")}
+                  className="form-radio text-purple-600"
                 />
-                <span>{option}</span>
+                <span>Yes</span>
               </label>
-            ))}
+              <label className="flex items-center space-x-2">
+                <input
+                  type="radio"
+                  name="agency"
+                  value="no"
+                  checked={isAgency === "no"}
+                  onChange={() => setIsAgency("no")}
+                  className="form-radio text-purple-600"
+                />
+                <span>No</span>
+              </label>
+            </div>
           </div>
-          {errors.isAgency && <p className="text-red-500 text-xs">{errors.isAgency}</p>}
-        </div>
 
-        <button className="w-full bg-purple-600 text-white py-2 rounded mt-3">Create Account</button>
-      </form>
-      <Link className="text-sm text-blue-500 mt-2" to='/'>Back</Link>
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full bg-purple-600 text-white py-2 rounded-md mt-4 hover:bg-purple-700 transition"
+          >
+            Create Account
+          </button>
+        </form>
+      </div>
     </div>
   );
-};
-
-export default SignupPage;
+}
